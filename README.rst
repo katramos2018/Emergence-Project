@@ -1,4 +1,7 @@
+My version of Emergence that is going to be tracked by github 
+
 Emergence
+
 =========
 
 Python source code for studying the simultaneous emergence of ecological patterns.
