@@ -7,8 +7,8 @@ import sys
 import numpy as np
 
 mydir = expanduser("~/")
-sys.path.append(mydir + "GitHub/Emergence/model")
-GenPath = mydir + "GitHub/Emergence/results/simulated_data/"
+sys.path.append(mydir + "/Emergence/model")
+GenPath = mydir + "/Emergence/results/simulated_data/"
 
 from diversity_metrics import *
 from spatial_functions import *
