@@ -6,9 +6,9 @@ from math import isnan
 import sys
 import numpy as np
 
-mydir = expanduser("~/")
-sys.path.append(mydir + "/Emergence/model")
-GenPath = mydir + "/Emergence/results/simulated_data/"
+mydir = expanduser("/proj/gibbons/kramos/")
+sys.path.append(mydir + "/Emergence-Project/model")
+GenPath = mydir + "/Emergence-Project/results/simulated_data/"
 
 from diversity_metrics import *
 from spatial_functions import *
@@ -86,6 +86,8 @@ def output(iD, sD, rD, ps, sim, N, R, ct, prod, splist2):
 
         ES = metrics.e_simpson(RAD)
         EV = metrics.e_var(RAD)
+        shan = metrics.Shannons_H(RAD)
+        eshan = metrics.e_shannon(RAD)
         Nm = max(RAD)
 
         skew = stats.skew(RAD)
@@ -147,7 +149,7 @@ def output(iD, sD, rD, ps, sim, N, R, ct, prod, splist2):
 
         OUT = open(GenPath + 'SimData.csv', 'a')
         outlist = [sim, ct, m, r, nN, rmax, gmax, maintmax, dmax, 500, u, h, l, N, prod, prod, R, Rdens,\
-        S, ES, EV, avgN, Nvar, Nm, lms, wt, amp, freq, phase, all_Q, a_Q, d_Q, all_G, a_G, d_G, all_M, a_M, d_M,\
+        S, ES, EV, shan, eshan, avgN, Nvar, Nm, lms, wt, amp, freq, phase, all_Q, a_Q, d_Q, all_G, a_G, d_G, all_M, a_M, d_M,\
         all_NR, a_NR, d_NR, all_Disp, a_Disp, d_Disp, all_avgRPF, a_avgRPF, d_avgRPF, all_avgMF, a_avgMF, d_avgMF,\
         all_Size, a_Size, d_Size, numA, SA, numD, SD, pD, dormlim]
 

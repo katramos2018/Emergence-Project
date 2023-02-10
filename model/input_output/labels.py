@@ -43,6 +43,8 @@ def headings():
     headings += 'species.richness,'
     headings += 'simpson.e,'
     headings += 'e.var,'
+    headings += 'shannon.h,'
+    headings += 'e.shan,'
     headings += 'avg.pop.size,'
     headings += 'pop.var,'
     headings += 'N.max,'
@@ -87,8 +89,8 @@ def headings():
 
 
 def clear():
-    mydir = expanduser("~/")
-    GenPath = mydir + 'Emergence/results/simulated_data/'
+    mydir = expanduser("/proj/gibbons/kramos/")
+    GenPath = mydir + 'Emergence-Project/results/simulated_data/'
 
     OUT = open(GenPath + 'RAD-Data.csv', 'w+').close()
     OUT = open(GenPath + 'SAR-Data.csv', 'w+').close()

@@ -5,8 +5,9 @@ import sys
 import numpy as np
 import multiprocessing as mp
 
+
 mydir = expanduser("~/")
-sys.path.append(mydir + "/Emergence/model")
+sys.path.append(mydir + "/Emergence-Project/model")
 
 from processes import *
 from diversity_metrics import *
@@ -59,14 +60,14 @@ def iter_procs(procs, iD, sD, rD, ps, ct, pr = 0, ceil = 2000):
 
 
 
-def run_model(p_s_list, rD = {}, sD = {}, iD = {}, ct = 0, splist2 = []):
-    procs, sim = p_s_list # Changed the way that run_model takes in args bc map only accepts a single arg
+def run_model(procs, sim, rD = {}, sD = {}, iD = {}, ct = 0, splist2 = []):
+
     print '\n'
     r = randint(1, 100)
     h = randint(10, 100)
     l = int(h)
 
-    ps = h, l, r, 10**np.random.RandomState().uniform(-4, 0) # fix bug that causes random seed to be the same for all sims during parallelization
+    ps = h, l, r, 10**np.random.uniform(-4, 0)
     sD, iD = bide.immigration(sD, iD, ps, 1000)
 
     while ct < 600:
@@ -74,17 +75,4 @@ def run_model(p_s_list, rD = {}, sD = {}, iD = {}, ct = 0, splist2 = []):
         if N == 0: break
         if ct > 100 and ct%10 == 0: splist2 = output.output(iD, sD, rD, ps, sim, N, R, ct, prod, splist2)
 
-# Generate a list of tuples to pass into run_model()
-
-how_many = 100 #how many sims to run
-names = []
-counter = 0 
-
-for i in range(0, how_many):
-    value = [procs, counter]
-    names.append(value)
-    counter = counter+1
-
-# Paralellize the run model function for faster sim generation
-pool = mp.Pool(20)
-pool.map(run_model, names)
+for sim in range(50): run_model(procs, sim)
