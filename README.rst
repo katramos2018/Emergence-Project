@@ -1,4 +1,4 @@
-My version of Emergence that is going to be tracked by github 
+My edits to Emergence that is going to be tracked by github 
 
 Emergence
 
