@@ -64,10 +64,10 @@ def run_model(procs, sim, rD = {}, sD = {}, iD = {}, ct = 0, splist2 = []):
 
     print '\n'
     r = randint(1, 100)
-    h = randint(10, 100)
+    h = randint(10, 100) 
     l = int(h)
 
-    ps = h, l, r, 10**np.random.uniform(-4, 0)
+    ps = h, l, r, 10**np.random.uniform(-4, 0) 
     sD, iD = bide.immigration(sD, iD, ps, 1000)
 
     while ct < 600:
