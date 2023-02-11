@@ -13,7 +13,7 @@ def immigration(sD, iD, ps, sd=1):
     for j in range(sd):
         if sd == 1 and np.random.binomial(1, 0.01) == 0: continue
 
-        p = np.random.randint(1, 10)
+        p = int(np.random.exponential(scale = 200)) # change the selection of p to resemble human gut diversity
         if p not in sD:
             sD[p] = {'gr' : 10**np.random.uniform(-3, -1)} # growth rate
             sD[p]['di'] = 10**np.random.uniform(-2, 0) # active dispersal rate
