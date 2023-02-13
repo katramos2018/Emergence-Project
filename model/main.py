@@ -64,7 +64,7 @@ def run_model(procs, sim, rD = {}, sD = {}, iD = {}, ct = 0, splist2 = []):
 
     print '\n'
     r = randint(1, 100)
-    h = randint(10, 100) 
+    h = randint(1, 1000) # increase range of body sizes  
     l = int(h)
 
     ps = h, l, r, 10**np.random.uniform(-4, 0) 
