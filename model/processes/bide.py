@@ -9,10 +9,6 @@ import copy
 
 def immigration(sD, iD, ps, sd=1):
     h, l, r, u = ps
-    
-    if sd == 1: #if this is not the first time running immigration, set sd = 10% of individuals to inc immigration
-        N = len(iD)
-        sd = int(N*0.1)
 
     for j in range(sd):
         if sd == 1 and np.random.binomial(1, 0.01) == 0: continue
@@ -123,19 +119,12 @@ def maintenance(iD):
 
 def ind_flow(iD, ps):
     h, l, r, u = ps
-   
-    N = len(iD) #find number of individuals 
-    counter = 0 
-   
-    while counter < (0.1*N): #keep running ind_flow until at least 10% of population has been replaced
-        
-        for k, val in iD.items():
-            iD[k]['x'] += u
-            iD[k]['y'] += u
 
-            if iD[k]['x'] > h or iD[k]['y'] > l: 
-                del iD[k]
-                counter += 1 #track how many inds have been deleted 
+    for k, val in iD.items():
+        iD[k]['x'] += u
+        iD[k]['y'] += u
+
+        if iD[k]['x'] > h or iD[k]['y'] > l: del iD[k]
 
     return iD
     
@@ -182,8 +171,8 @@ def res_flow(rD, ps):
 def ResIn(rD, ps):
     h, l, r, u = ps
 
-    for i in range(r):
-        p = np.random.binomial(1, u)
+    for i in range(1000): #have 100 chances to have resources flowing at all times
+        p = np.random.binomial(1, .50) # increase the chance of success 
         ID = time.time()
         if p == 1:
             rD[ID] = {'t' : randint(0, 2)}

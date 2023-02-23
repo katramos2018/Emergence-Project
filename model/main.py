@@ -63,11 +63,11 @@ def iter_procs(procs, iD, sD, rD, ps, ct, pr = 0, ceil = 2000):
 def run_model(procs, sim, rD = {}, sD = {}, iD = {}, ct = 0, splist2 = []):
 
     print '\n'
-    r = randint(1, 100)
-    h = randint(1, 1000) # increase range of body sizes  
+    r = randint(100, 1000)
+    h = randint(10, 20) 
     l = int(h)
 
-    ps = h, l, r, 10**np.random.uniform(-4, 0) 
+    ps = h, l, r, 10**np.random.uniform(-4, 0)
     sD, iD = bide.immigration(sD, iD, ps, 1000)
 
     while ct < 600:
