@@ -10,10 +10,12 @@ import copy
 def immigration(sD, iD, ps, sd=1):
     h, l, r, u = ps
 
+    if sd == 1:
+        N = len(iD)
+        sd = int(N*0.1) 
+    
     for j in range(sd):
-        if sd == 1 and np.random.binomial(1, 0.01) == 0: continue
-
-        p = int(np.random.exponential(scale = 200)) # change the selection of p to resemble human gut diversity
+        p = int(np.random.exponential(scale = 20)) # change the selection of p to resemble human gut diversity
         if p not in sD:
             sD[p] = {'gr' : 10**np.random.uniform(-3, -1)} # growth rate
             sD[p]['di'] = 10**np.random.uniform(-2, 0) # active dispersal rate
@@ -120,13 +122,20 @@ def maintenance(iD):
 def ind_flow(iD, ps):
     h, l, r, u = ps
 
-    for k, val in iD.items():
-        iD[k]['x'] += u
-        iD[k]['y'] += u
+    N = len(iD)
+    counter = 0
 
-        if iD[k]['x'] > h or iD[k]['y'] > l: del iD[k]
+    while counter < (0.1*N):
 
-    return iD
+        for k, val in iD.items():
+            iD[k]['x'] += u
+            iD[k]['y'] += u
+
+            if iD[k]['x'] > h or iD[k]['y'] > l: 
+                del iD[k]
+                counter += 1
+
+        return iD
     
     
     
@@ -171,14 +180,12 @@ def res_flow(rD, ps):
 def ResIn(rD, ps):
     h, l, r, u = ps
 
-    for i in range(1000): #have 100 chances to have resources flowing at all times
-        p = np.random.binomial(1, .50) # increase the chance of success 
+    for i in range(500): #each time ResIn is called, generate 500 new resources
         ID = time.time()
-        if p == 1:
-            rD[ID] = {'t' : randint(0, 2)}
-            rD[ID]['v'] = np.random.uniform(1, 10)
-            rD[ID]['x'] = float(np.random.uniform(0, h))
-            rD[ID]['y'] = float(np.random.uniform(0, l))
+        rD[ID] = {'t' : randint(0, 2)}
+        rD[ID]['v'] = np.random.uniform(1, 10)
+        rD[ID]['x'] = float(np.random.uniform(0, h))
+        rD[ID]['y'] = float(np.random.uniform(0, l))
 
     return rD
     

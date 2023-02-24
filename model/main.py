@@ -3,7 +3,6 @@ from random import shuffle, seed, randint
 from os.path import expanduser
 import sys
 import numpy as np
-import multiprocessing as mp
 
 
 mydir = expanduser("~/")
